@@ -1,0 +1,7 @@
+mixin testButton(title, customClass)
+  button(class=`btn ${customClass}`)= title
+
+mixin listItem(classPrefix)
+  li(class=`list__item ${classPrefix}__item`)
+    if block
+      block

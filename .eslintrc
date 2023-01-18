@@ -1,0 +1,51 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "react",
+    "react-hooks",
+    "prettier"
+  ],
+  "rules": {
+    "prefer-const": "error",
+    "semi": "off",
+    "no-plusplus": "off",
+    "max-len": [
+      "warn",
+      160,
+      {
+        "ignoreComments": true
+      }
+    ],
+    "no-tabs": "off",
+    "prefer-destructuring": "warn",
+    "indent": [
+      "error",
+      2
+    ],
+    "no-unused-vars": "warn",
+    "no-sparse-arrays": "off",
+    "react/jsx-key": "warn",
+    "no-console": "warn",
+    "react/prop-types": "off",
+    "react/display-name": "off"
+  },
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+  }
+}
