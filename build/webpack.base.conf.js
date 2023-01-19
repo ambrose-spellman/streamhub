@@ -76,22 +76,28 @@ module.exports = {
       //     }
       //   }
       // },
-      // {
-      //   // Fonts
-      //   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/i,
-      //   loader: 'file-loader',
-      //   options: {
-      //     name: '[name].[ext]'
-      //   }
-      // },
       {
-        // images / icons
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        // Fonts
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/i,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]'
         }
       },
+      {
+        // images / icons
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset/resource',
+        // loader: 'file-loader',
+        // options: {
+        //   name: '[name].[ext]'
+        // }
+      },
+      // {
+      //   test: /\.(png|jpg|svg)$/,
+      //   include: path.join(__dirname, 'img'),
+      //   loader: 'url-loader?limit=30000&name=images/[name].[ext]'
+      // },
       {
         // scss
         test: /\.scss$/i,
@@ -112,6 +118,12 @@ module.exports = {
               // config: { path: `../postcss.config.js` }
             }
           },
+          // {
+          //   loader: 'resolve-url-loader',
+          //   options: {
+          //     sourceMap: true
+          //   }
+          // },
           {
             loader: 'sass-loader',
             options: { sourceMap: true }
