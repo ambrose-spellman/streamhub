@@ -1,7 +1,16 @@
-mixin testButton(title, customClass)
-  button(class=`btn ${customClass}`)= title
+mixin btn(title, customClass, isLink, url)
+  if isLink
+    a(class=`btn ${customClass}` href=`${url}`)= title
+  else
+    button(class=`btn ${customClass}`)= title
 
-mixin listItem(classPrefix)
-  li(class=`list__item ${classPrefix}__item`)
+mixin link(title, url, customClass)
+  a(class=`link ${customClass}` href=`${url}`)= title
+
+mixin listItem(classPrefix, customClass)
+  li(class=`list__item ${classPrefix}__item ${customClass ? customClass : ''}`)
     if block
       block
+
+mixin img(img, className)
+  img(src=`/assets/img/${img}` class=className)
