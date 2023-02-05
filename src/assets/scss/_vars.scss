@@ -1,0 +1,11 @@
+$c_accent-color: #a3d8ff;
+$c_accent-color--dark: darken($c_accent-color, 10%);
+$c_accent-color--light: lighten($c_accent-color, 10%);
+$c_link-color: $c_accent-color;
+$c_contrast-color: #fff;
+$c_card-color: #fff;
+
+$shadow_1: 0 2px 6px 0 rgba(20, 20, 43, 0.06);
+$shadow_2: 0 2px 12px 0 rgba(20, 20, 43, 0.08);
+$shadow_3: 0 8px 28px 0 rgba(20, 20, 43, 0.1);
+$shadow_4: 0 14px 42px 0 rgba(20, 20, 43, 0.14);

@@ -1,0 +1,13 @@
+mixin navLink(url, title, customClass)
+  li(class=`header__nav-item ${customClass || ''}`)
+    a.header__nav-item-link(href=url)= title
+      if block 
+        block
+
+header.header.header
+  .header__wrapper.container
+    include ./logo
+    include ./nav-menu
+    include ./controls
+    include ./burger
+    
