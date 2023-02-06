@@ -98,10 +98,11 @@ a{
 
 .header{
   box-shadow: $shadow_1;
+  background-color: $c_card-color;
   
   &__wrapper{
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding-top: $p_header-pt;
+    padding-bottom: $p_header-pb;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,22 +111,24 @@ a{
   &__logo{
     
     &-img{
-      height: 2.1em;
+      height: $h_logo-header;
       width: auto;
       
       @include s-screen(){
-      height: 3em;
+      height: $h_logo-header-mob;
     }
+    }
+  }
+
+  &__nav{
+    @include s-screen(){
+      display: none;
     }
   }
 
   &__nav-list{
     display: flex;
     gap: 2em;
-
-    @include s-screen(){
-      display: none;
-    }
   }
 
   &__nav-item{
@@ -173,6 +176,9 @@ a{
   }
 
   &__controls{
+    display: flex;
+    gap: 1em;
+
     @include s-screen(){
       display: none;
     }
@@ -185,5 +191,87 @@ a{
     }
   }
 
+  &__mobile-sidebar{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 0%;
+    transition: all .8s;
+    box-sizing: border-box;
+    padding: 2em;
+    box-shadow: $shadow_1;
+    z-index: -1;
+    padding-top: $p_header-pt + $p_header-pb + $h_logo-header-mob + 2em;
+    background-color: $c_card-color;
 
+    &.opened{
+      display: block;
+      width: 50%;
+      right: 0px;
+    }
+
+    //Header elements in mobile sidebar
+    .header{
+
+      &__nav{
+        display: block;
+      }
+
+      &__nav-list{
+        flex-direction: column;
+        gap: 1em;
+      }
+
+      &__nav-item{
+        font-size: 1.5em;
+
+        &--with-submenu{
+          &::after{
+            content: '';
+          }
+        }
+      }
+
+      &__sublink-list{
+            position: relative;
+            visibility: visible;
+            opacity: 1;
+            transition: all .3s;
+            background-color: unset;
+            box-shadow: unset;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            padding-left: 1em;
+            
+            .header__nav-item{
+              font-size: 1em;
+            }
+      }
+
+      &__controls{
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+  }
+
+  &__mobile-sidebar-content{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    justify-content: flex-start;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
