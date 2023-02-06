@@ -292,9 +292,8 @@ a{
 
 .hero{
   box-sizing: border-box;
-  height: calc(100vh - $p_header-pt - $p_header-pb - $h_logo-header-mob);
+  height: calc(99vh - $p_header-pt - $p_header-pb - $h_logo-header-mob);
   padding: 2em 0;
-  // padding-top: $p_header-pt + $p_header-pb + $h_logo-header-mob + 2em;
   display: flex;
   align-items: center;
 
