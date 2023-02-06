@@ -36,6 +36,19 @@ a{
     background-color: $c_accent-color--dark;
     cursor: pointer;
   }
+
+  &--outlined{
+    background-color: unset;
+    color: $c_accent-color;
+    border: 2px solid $c_accent-color;
+
+      &:hover, &:focus{
+        background-color: $c_accent-color--light;
+        color: $c_contrast-color;
+        cursor: pointer;
+      }
+      
+  }
 }
 
 .burger{
@@ -99,6 +112,7 @@ a{
 .header{
   box-shadow: $shadow_1;
   background-color: $c_card-color;
+  position: sticky;
   
   &__wrapper{
     padding-top: $p_header-pt;
@@ -275,3 +289,79 @@ a{
     }
   }
 }
+
+.hero{
+  box-sizing: border-box;
+  height: calc(100vh - $p_header-pt - $p_header-pb - $h_logo-header-mob);
+  padding: 2em 0;
+  // padding-top: $p_header-pt + $p_header-pb + $h_logo-header-mob + 2em;
+  display: flex;
+  align-items: center;
+
+  @include m-screen{
+      padding: 1em 0;
+  }
+
+  &__wrapper{
+    display: flex;
+    align-items: center;
+    gap: 4%;
+    justify-content: space-between;
+
+    @include s-screen{
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1em;
+    }
+  }
+
+  &__content-block{
+    flex-basis: 48%;
+
+    @include m-screen{
+      flex-basis: 100%;
+    }
+  }
+
+  &__title{
+    font-size: 2.5em;
+    font-weight: 700;
+  }
+
+  &__description{
+    font-size: 1.2em;
+  }
+
+  &__btns-area{
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+
+  }
+
+  &__btn{
+
+    
+  }
+
+  
+  &__images-block{
+    flex-basis: 48%;
+
+    @include m-screen{
+      flex-basis: 100%;
+    }
+  }
+
+  &__image{
+    display: block;
+    margin: 0 auto;
+    height: 70vh;
+
+    @include m-screen{
+      height: auto;
+    }
+  }
+}
+
