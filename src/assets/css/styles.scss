@@ -18,32 +18,32 @@ a{
 }
 
 .container {
-  max-width: 76.25em;
-  padding: 0 1em;
+  max-width: 76.25rem;
+  padding: 0 1rem;
   margin: 0 auto;
 }
 
 .btn {
   box-sizing: border-box;
-  padding: 0.5em 1em;
-  background-color: $c_accent-color;
+  padding: 0.5rem 1rem;
+  background-color: $c_primary-color;
   color: $c_contrast-color;
-  border-radius: 2em;
+  border-radius: 2rem;
   border: none;
   font-weight: bold;
 
   &:hover, &:focus{
-    background-color: $c_accent-color--dark;
+    background-color: $c_primary-color--dark;
     cursor: pointer;
   }
 
   &--outlined{
     background-color: unset;
-    color: $c_accent-color;
-    border: 2px solid $c_accent-color;
+    color: $c_primary-color;
+    border: 2px solid $c_primary-color;
 
       &:hover, &:focus{
-        background-color: $c_accent-color--light;
+        background-color: $c_primary-color--light;
         color: $c_contrast-color;
         cursor: pointer;
       }
@@ -55,16 +55,16 @@ a{
 
   &__btn{
     position: relative;
-    height: 3em;
-    width: 3em;
-    background-color: $c_accent-color;
+    height: 3rem;
+    width: 3rem;
+    background-color: $c_primary-color;
     cursor: pointer;
     box-shadow: $shadow_1;
     transition: all .3s;
     border-radius: 100%;
 
     &:hover, &:focus{
-      background-color: $c_accent-color--dark;
+      background-color: $c_primary-color--dark;
       box-shadow: $shadow_1;
     }
 
@@ -72,14 +72,14 @@ a{
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 1.75em;
-      height: 0.2em;
-      border-radius: 1em;
+      width: 1.75rem;
+      height: 0.2rem;
+      border-radius: 1rem;
       background-color: $c_contrast-color;
       transition: all .3s;
 
       &--1{
-        transform: translate(-50%, -0.75em);
+        transform: translate(-50%, -0.75rem);
       }
 
       &--2{
@@ -88,7 +88,7 @@ a{
       }
 
       &--3{
-        transform: translate(-50%, 0.5em);
+        transform: translate(-50%, 0.5rem);
       }
     }
 
@@ -142,10 +142,10 @@ a{
 
   &__nav-list{
     display: flex;
-    gap: 2em;
+    gap: 2rem;
   }
 
-  &__nav-item{
+  &__nav-itrem{
     position: relative;
     
     &:hover, &:focus{
@@ -161,7 +161,7 @@ a{
         content: '\2228';
         color: $c_link-color; 
         position: absolute;
-        right: -1em;
+        right: -1rem;
       }
     }
 
@@ -184,14 +184,14 @@ a{
     box-shadow: $shadow_1;
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
-    min-width: 5em;
-    padding: 0 .5em .5em;
+    gap: 0.5rem;
+    min-width: 5rem;
+    padding: 0 .5rem .5rem;
   }
 
   &__controls{
     display: flex;
-    gap: 1em;
+    gap: 1rem;
 
     @include s-screen(){
       display: none;
@@ -213,10 +213,10 @@ a{
     width: 0%;
     transition: all .8s;
     box-sizing: border-box;
-    padding: 2em;
+    padding: 2rem;
     box-shadow: $shadow_1;
     z-index: -1;
-    padding-top: $p_header-pt + $p_header-pb + $h_logo-header-mob + 2em;
+    padding-top: $p_header-pt + $p_header-pb + $h_logo-header-mob + 2rem;
     background-color: $c_card-color;
 
     &.opened{
@@ -225,7 +225,7 @@ a{
       right: 0px;
     }
 
-    //Header elements in mobile sidebar
+    //Header elrements in mobile sidebar
     .header{
 
       &__nav{
@@ -234,11 +234,11 @@ a{
 
       &__nav-list{
         flex-direction: column;
-        gap: 1em;
+        gap: 1rem;
       }
 
-      &__nav-item{
-        font-size: 1.5em;
+      &__nav-itrem{
+        font-size: 1.5rem;
 
         &--with-submenu{
           &::after{
@@ -256,11 +256,11 @@ a{
             box-shadow: unset;
             display: flex;
             flex-direction: column;
-            gap: 0.5em;
-            padding-left: 1em;
+            gap: 0.5rem;
+            padding-left: 1rem;
             
-            .header__nav-item{
-              font-size: 1em;
+            .header__nav-itrem{
+              font-size: 1rem;
             }
       }
 
@@ -279,7 +279,7 @@ a{
     max-height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 2rem;
     justify-content: flex-start;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
@@ -293,12 +293,12 @@ a{
 .hero{
   box-sizing: border-box;
   height: calc(99vh - $p_header-pt - $p_header-pb - $h_logo-header-mob);
-  padding: 2em 0;
+  padding: 2rem 0;
   display: flex;
   align-items: center;
 
   @include m-screen{
-      padding: 1em 0;
+      padding: 1rem 0;
   }
 
   &__wrapper{
@@ -311,7 +311,7 @@ a{
       flex-wrap: wrap;
       justify-content: center;
       flex-direction: column;
-      gap: 1em;
+      gap: 1rem;
     }
   }
 
@@ -324,18 +324,18 @@ a{
   }
 
   &__title{
-    font-size: 2.5em;
+    font-size: 2.5rem;
     font-weight: 700;
   }
 
   &__description{
-    font-size: 1.2em;
+    font-size: 1.2rem;
   }
 
   &__btns-area{
     display: flex;
     justify-content: center;
-    gap: 2em;
+    gap: 2rem;
 
   }
 
@@ -365,19 +365,19 @@ a{
 }
 
 .narrow-section-1{
-  margin-top: 1em;
-  padding: 2em 0;
+  margin-top: 1rem;
+  padding: 2rem 0;
   box-shadow: $shadow_2;
 
   &__wrapper{
     display: flex;
     // justify-content: space-between;
-    gap: 4em;
+    gap: 4rem;
     flex-wrap: wrap;
   }
 
   &__text-block{
-    flex-basis: 16.5em;
+    flex-basis: 16.5rem;
 
     @include l-screen(){
       flex-basis: 100%;
@@ -386,9 +386,9 @@ a{
   }
 
   &__title{
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5rem;
   }
 
   &__desc{
@@ -402,7 +402,7 @@ a{
 
     @include s-screen(){
       flex-direction: column;
-      gap: 1em;
+      gap: 1rem;
     }
   }
 
@@ -415,13 +415,13 @@ a{
   }
 
   &__img{
-    width: 16.5em;
+    width: 16.5rem;
     height: auto;
     display: block;
     margin: 0 auto;
 
     @include m-screen(){
-      width: 14em;
+      width: 14rem;
     }
 
     @include s-screen(){
@@ -431,12 +431,12 @@ a{
 }
 
 .content-section-1{
-  margin-top: 1em;
-  padding: 2em 0;
+  margin-top: 1rem;
+  padding: 2rem 0;
 
   &__wrapper{
     display: flex;
-    gap: 1em;
+    gap: 1rem;
     justify-content: space-between;
 
     @include s-screen(){
@@ -449,7 +449,7 @@ a{
     flex-direction: column;
     justify-content: space-around;
     flex-basis: 30%;
-    gap: 2em;
+    gap: 2rem;
 
     @include s-screen(){
       flex-basis: 100%;
@@ -457,7 +457,7 @@ a{
   }
 
   &__img-wrapper{
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 
     @include s-screen(){
       text-align: center;
@@ -465,12 +465,12 @@ a{
   }
 
   &__img{
-    width: 3em;
+    width: 3rem;
     height: auto;
   }
 
   &__title-wrapper{
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 
     @include s-screen(){
       text-align: center;
@@ -478,12 +478,12 @@ a{
   }
 
   &__title{
-    font-size: 1.2em;
+    font-size: 1.2rem;
     font-weight: 700;
   }
 
   &__desc-wrapper{
-    max-width: 18em;
+    max-width: 18rem;
 
     @include s-screen(){
       max-width: unset;
@@ -503,18 +503,18 @@ a{
 
   &__image{
     width: 100%;
-    max-width: 40em;
+    max-width: 40rem;
     height: auto;
   }
 }
 
 .content-section-2{
-  margin-top: 1em;
-  padding: 2em 0;
+  margin-top: 1rem;
+  padding: 2rem 0;
 
   &__wrapper{
     display: flex;
-    gap: 1em;
+    gap: 1rem;
     justify-content: space-between;
 
     @include s-screen(){
@@ -528,7 +528,7 @@ a{
     flex-direction: column;
     justify-content: space-around;
     flex-basis: 30%;
-    gap: 2em;
+    gap: 2rem;
 
     @include s-screen(){
       flex-basis: 100%;
@@ -536,7 +536,7 @@ a{
   }
 
   &__img-wrapper{
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 
     @include s-screen(){
       text-align: center;
@@ -544,12 +544,12 @@ a{
   }
 
   &__img{
-    width: 3em;
+    width: 3rem;
     height: auto;
   }
 
   &__title-wrapper{
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 
     @include s-screen(){
       text-align: center;
@@ -557,12 +557,12 @@ a{
   }
 
   &__title{
-    font-size: 1.2em;
+    font-size: 1.2rem;
     font-weight: 700;
   }
 
   &__desc-wrapper{
-    max-width: 18em;
+    max-width: 18rem;
 
     @include s-screen(){
       max-width: unset;
@@ -581,7 +581,7 @@ a{
 
   &__image{
     width: 100%;
-    max-width: 40em;
+    max-width: 40rem;
     height: auto;
   }
 }

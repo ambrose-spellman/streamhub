@@ -13,15 +13,21 @@ mixin listItem(classPrefix, customClass)
       block
 
 mixin img(img, className)
-  img(src=`/assets/img/${img}` class=className)
+  img(src=require(`../../assets/img/${img}`) class=className)
 
 mixin cardWithPic(classPrefix, img, title, description, customClass)
   div(class=`card ${classPrefix}__card-wrapper ${customClass || ''}`)
     div(class=`card__img-wrapper ${classPrefix}__img-wrapper`)
       +img(img, `card__img ${classPrefix}__img`)
-    div(class=`card__title-wrapper ${classPrefix}__title-wrapper`)
-      h3(class=`card__title ${classPrefix}__title`)= title
-    div(class=`card__desc-wrapper ${classPrefix}__desc-wrapper`)
-      div(class=`card__desc ${classPrefix}__desc`)= description
+    if title
+      div(class=`card__title-wrapper ${classPrefix}__title-wrapper`)
+        h3(class=`card__title ${classPrefix}__title`)= title
+    if description
+      div(class=`card__desc-wrapper ${classPrefix}__desc-wrapper`)
+        div(class=`card__desc ${classPrefix}__desc`)= description
     if block
       block
+
+mixin decorEl(img, id, className)
+  img(src=require(`../../assets/img/${img}`) class=`decor-el ${className || ''}` id=`${id}`)
+

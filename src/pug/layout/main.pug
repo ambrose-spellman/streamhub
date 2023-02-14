@@ -10,11 +10,11 @@ html(lang='en')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title= pageTitle
     meta(name="description", content=description)
+    link(href=require('../../assets/css/styles.scss') rel='stylesheet')
+    script(src=require('../../assets/js/main.js') defer='defer')
 
   body.body
     include ../includes/header/index
-    include ../includes/hero
-    include ../includes/narrow-section-1
-    include ../includes/content-section-2
-    include ../includes/content-section-1
-    block content
+    main
+      block content
+    include ../includes/footer

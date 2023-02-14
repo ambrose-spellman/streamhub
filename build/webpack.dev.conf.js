@@ -5,6 +5,7 @@ const webpack = require('webpack')
 // Source: https://github.com/survivejs/webpack-merge
 const { merge } = require('webpack-merge')
 // Base config
+// const baseWebpackConfig = require('./webpack.base.conf')
 const baseWebpackConfig = require('./webpack.base.conf')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
@@ -15,6 +16,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     port: 8081,
     open: true,
     hot: true,
+    liveReload: true,
+    watchFiles: {
+      paths: ['src/**/*.*'],
+      options: {
+        usePolling: true,
+      },
+    },
     // overlay: {
     //   warnings: true,
     //   errors: true

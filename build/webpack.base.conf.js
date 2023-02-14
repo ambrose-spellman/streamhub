@@ -1,209 +1,75 @@
-/* Base config:
-  ========================================================================== */
-
-const path = require('path')
-const fs = require('fs')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const { VueLoaderPlugin } = require('vue-loader')
-
-// Main const
-const PATHS = {
-  src: path.join(__dirname, '../src'),
-  dist: path.join(__dirname, '../dist'),
-  assets: 'assets/'
-}
-
-
-// Pages const for HtmlWebpackPlugin
-// see more: https://github.com/vedees/webpack-template/blob/master/README.md#html-dir-folder
-// const PAGES_DIR = PATHS.src
-// const PAGES = fs
-//   .readdirSync(PAGES_DIR)
-//   .filter(fileName => fileName.endsWith('.html'))
-const PAGES_DIR = `${PATHS.src}/pug/pages/`
-const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
+const path = require('path');
+const PugPlugin = require('pug-plugin');
 
 module.exports = {
-  externals: {
-    paths: PATHS
-  },
-  entry: {
-    app: PATHS.src
-    // module: `${PATHS.src}/your-module.js`,
-  },
   output: {
-    filename: `${PATHS.assets}js/[name].[contenthash].js`,
-    path: PATHS.dist,
-    /*
-      publicPath: '/' - relative path for dist folder (js,css etc)
-      publicPath: './' (dot before /) - absolute path for dist folder (js,css etc)
-    */
-    publicPath: '/'
+    path: path.join(__dirname, '../dist/'),
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          name: 'vendors',
-          test: /node_modules/,
-          chunks: 'all',
-          enforce: true
-        }
-      }
-    }
+
+  entry: {
+    // The Pug file is the entry-point for all scripts and styles.
+    // Source scripts and styles must be specified directly in Pug.
+    // Do not need to define JS and SCSS in the webpack entry.
+
+    index: './src/pug/pages/index.pug',      // output dist/index.html
+    // 'page': './src/pug/pages/page.pug',
+    // 'gallery': './src/pug/pages/gallery.pug',
+    // 'contacts': './src/pug/pages/contacts.pug',
+    // ...
   },
+
+  plugins: [
+    // enable processing of Pug files defined in webpack entry
+    new PugPlugin({
+      js: {
+        // output filename of extracted JS file from source script defined in Pug
+        filename: 'assets/js/[name].[contenthash:8].js',
+      },
+      css: {
+        // output filename of extracted CSS file from source style defined in Pug
+        filename: 'assets/css/[name].[contenthash:8].css',
+      },
+      pretty: false, // enable formatting of HTML
+    })
+  ],
+
   module: {
     rules: [
       {
-        // JavaScript
-        test: /\.js$/i,
-        loader: 'babel-loader',
-        exclude: '/node_modules/'
+        test: /\.pug$/,
+        loader: PugPlugin.loader, // PugPlugin already contain the pug-loader
       },
-      {
-        test: /\.pug$/i,
-        loader: 'pug-loader',
+      { // scss
+        test: /\.(css|sass|scss)$/,
+        use: ['css-loader', 'sass-loader']
       },
-      // {
-      //   // Vue
-      //   test: /\.vue$/,
-      //   loader: 'vue-loader',
-      //   options: {
-      //     loader: {
-      //       scss: 'vue-style-loader!css-loader!sass-loader'
-      //     }
-      //   }
-      // },
-      {
-        // Fonts
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/i,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]'
-        }
-      },
-      {
-        // images / icons
-        test: /\.(png|jpe?g|gif|svg)$/i,
+      { //images
+        test: /\.(png|jpg|jpeg|svg|ico)/,
         type: 'asset/resource',
-        // loader: 'file-loader',
-        // options: {
-        //   name: '[name].[ext]'
-        // }
-      },
-      // {
-      //   test: /\.(png|jpg|svg)$/,
-      //   include: path.join(__dirname, 'img'),
-      //   loader: 'url-loader?limit=30000&name=images/[name].[ext]'
-      // },
-      {
-        // scss
-        test: /\.scss$/i,
-        use: [
-          'style-loader',
-          // MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: { sourceMap: true }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              postcssOptions: {
-                plugins: [require("postcss-preset-env")]
-              }
-              // config: { path: `../postcss.config.js` }
-            }
-          },
-          // {
-          //   loader: 'resolve-url-loader',
-          //   options: {
-          //     sourceMap: true
-          //   }
-          // },
-          {
-            loader: 'sass-loader',
-            options: { sourceMap: true }
-          }
-        ]
-      },
-      {
-        // css
-        test: /\.css$/i,
-        use: [
-          'style-loader',
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: { sourceMap: true }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              // config: { path: `./postcss.config.js` }
-              postcssOptions: {
-                plugins: [require("postcss-preset-env")]
-              }
-            }
-          }
-        ]
-      }
-    ]
-  },
-  resolve: {
-    alias: {
-      '~': PATHS.src, // Example: import Dog from "~/assets/img/dog.jpg"
-      '@': `${PATHS.src}/js`, // Example: import Sort from "@/utils/sort.js"
-      // vue$: 'vue/dist/vue.js'
-    }
-  },
-  plugins: [
-    // Vue loader
-    // new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({
-      filename: `${PATHS.assets}css/[name].[contenthash].css`
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        // Images:
-        {
-          from: `${PATHS.src}/${PATHS.assets}img`,
-          to: `${PATHS.assets}img`
+        generator: {
+          filename: 'assets/images/[name].[hash:8][ext]',
         },
-        // Fonts:
-        {
-          from: `${PATHS.src}/${PATHS.assets}fonts`,
-          to: `${PATHS.assets}fonts`
+      },
+      { //fonts
+        test: /\.(woff2|woff|ttf|svg|eot)/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext]',
         },
-        // Static (copy to '/'):
-        {
-          from: `${PATHS.src}/static`,
-          to: ''
-        }
-      ]
-    }),
-
-    /*
-      Automatic creation any html pages (Don't forget to RERUN dev server!)
-      See more:
-      https://github.com/vedees/webpack-template/blob/master/README.md#create-another-html-files
-      Best way to create pages:
-      https://github.com/vedees/webpack-template/blob/master/README.md#third-method-best
-    */
-    // ...PAGES.map(
-    //   page =>
-    //     new HtmlWebpackPlugin({
-    //       template: `${PAGES_DIR}/${page}`,
-    //       filename: `./${page}`
-    //     })
-    // )
-    ...PAGES.map(page => new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/${page}`,
-      filename: `./${page.replace(/\.pug/, '.html')}`
-    })),
-  ]
-}
+      },
+      { //js - babel
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              // ['@babel/preset-env', { targets: "defaults" }]
+              ['@babel/preset-env', { targets: "> 0.25%, not dead" }]
+            ],
+          },
+        },
+      },
+    ],
+  },
+};
