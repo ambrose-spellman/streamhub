@@ -13,8 +13,6 @@ module.exports = {
 
     index: './src/pug/pages/index.pug',      // output dist/index.html
     // 'page': './src/pug/pages/page.pug',
-    // 'gallery': './src/pug/pages/gallery.pug',
-    // 'contacts': './src/pug/pages/contacts.pug',
     // ...
   },
 
@@ -23,11 +21,13 @@ module.exports = {
     new PugPlugin({
       js: {
         // output filename of extracted JS file from source script defined in Pug
-        filename: 'assets/js/[name].[contenthash:8].js',
+        // filename: 'assets/js/[name].[contenthash:8].js', //Uncomment Me if you need hash in js filename
+        filename: 'assets/js/[name].js', //Uncomment Me if you don't need hash in js filename
       },
       css: {
         // output filename of extracted CSS file from source style defined in Pug
-        filename: 'assets/css/[name].[contenthash:8].css',
+        // filename: 'assets/css/[name].[contenthash:8].css', //Uncomment Me if you need hash in css filename
+        filename: 'assets/css/[name].css', //Uncomment Me if you don't need hash in css filename
       },
       pretty: false, // enable formatting of HTML
     })
@@ -47,7 +47,8 @@ module.exports = {
         test: /\.(png|jpg|jpeg|svg|ico)/,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/images/[name].[hash:8][ext]',
+          // filename: 'assets/images/[name].[hash:8][ext]', //Uncomment Me if you need hash in images filename
+          filename: 'assets/images/[name][ext]', //Uncomment Me if you don't need hash in images filename
         },
       },
       { //fonts

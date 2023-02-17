@@ -10,6 +10,11 @@ html(lang='en')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title= pageTitle
     meta(name="description", content=description)
+
+    link(href=require('swiper/swiper-bundle.min.css') rel='stylesheet')
+    //- uncomment line below if swiper styles didn't loaded
+    //- link(href=require('../../assets/libs/swiper/swiper-bundle.min.css') rel='stylesheet')
+
     link(href=require('../../assets/css/styles.scss') rel='stylesheet')
     script(src=require('../../assets/js/main.js') defer='defer')
 
