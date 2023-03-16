@@ -1,10 +1,31 @@
-section.hero 
-  .container.hero__wrapper
-    .hero__content-block
-      h1.hero__title The main Title for the whole website
-      p.hero__description Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, natus excepturi aspernatur laboriosam sed consequatur
-      div.hero__btns-area
-        +btn('Show more', 'hero__btn btn--outlined')
-        +btn('Order now', 'hero__btn')
-    .hero__images-block 
-      +img('square.png', 'hero__image')
+section.hero
+  .container
+    .hero__wrapper
+      .hero__content_mobile-block
+        .hero__content_text
+            h1.hero__title
+              p Twitch
+              p live stream
+              p advertising
+              p on autopilot
+            p.hero_desc StreamHERO is the platform where streamers and advertisers collaborate at ease
+        .hero__images-block
+          +img('mobilehero.png', 'hero_circled_image')
+    //.hero__content_desktop-block
+    //    .hero__images-block
+    //      +img('hero-1.jpg', 'hero_circled_image-220')
+    //    h1.hero__title Twitch
+    //    .hero__images-block
+    //      +img('hero-2.jpg', 'hero_circled_image-490')
+    //    h1.hero__title stream
+    //    .hero__images-block
+    //      +img('hero-3.jpg', 'hero_circled_image-320')
+    //    h1.hero__title live
+    //    .hero__images-block
+    //      +img('hero-4.jpg', 'hero_circled_image-220')
+    //    h1.hero__title advertising
+    //    .hero__images-block
+    //      +img('hero-5.jpg', 'hero_circled_image-320')
+    //    h1.hero__title on autopilot
+    div.hero__btns-area
+      +btn('Show more', 'hero__btn btn--outlined')

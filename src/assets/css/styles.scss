@@ -24,47 +24,35 @@ a{
 }
 
 .btn {
-  box-sizing: border-box;
-  padding: 0.5rem 1rem;
-  background-color: $c_primary-color;
+  padding: 1rem 0.2rem;
+  font-size: 20px;
+  line-height: 24px;
   color: $c_contrast-color;
-  border-radius: 2rem;
-  border: none;
   font-weight: bold;
-
+  transition: all 0.5s ease-in-out;
   &:hover, &:focus{
-    background-color: $c_primary-color--dark;
     cursor: pointer;
   }
-
-  &--outlined{
-    background-color: unset;
-    color: $c_primary-color;
-    border: 2px solid $c_primary-color;
-
-      &:hover, &:focus{
-        background-color: $c_primary-color--light;
-        color: $c_contrast-color;
-        cursor: pointer;
-      }
-      
-  }
 }
+.section_title {
+  @include section_title($caribbean_green)
 
+}
+.section_desc {
+  @include section_desc()
+}
 .burger{
 
   &__btn{
     position: relative;
     height: 3rem;
     width: 3rem;
-    background-color: $c_primary-color;
     cursor: pointer;
     box-shadow: $shadow_1;
     transition: all .3s;
     border-radius: 100%;
-
+    z-index: 4;
     &:hover, &:focus{
-      background-color: $c_primary-color--dark;
       box-shadow: $shadow_1;
     }
 
@@ -111,9 +99,8 @@ a{
 
 .header{
   box-shadow: $shadow_1;
-  background-color: $c_card-color;
-  position: sticky;
-  
+  background-color: $interdimensional_blue;
+
   &__wrapper{
     padding-top: $p_header-pt;
     padding-bottom: $p_header-pb;
@@ -126,7 +113,7 @@ a{
     
     &-img{
       height: $h_logo-header;
-      width: auto;
+      width: 8rem;
       
       @include s-screen(){
       height: $h_logo-header-mob;
@@ -135,9 +122,22 @@ a{
   }
 
   &__nav{
-    @include s-screen(){
-      display: none;
+    &-item-link {
+      color: $c-contrast-color;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      animation: ease-out 1s;
+      &:hover {
+        //text-underline: #FFF9F2;
+        border-bottom:1px solid $c_contrast-color ;
+      }
     }
+    @media only screen and (max-width: 992px){
+      display: none;
+
+    }
+
   }
 
   &__nav-list{
@@ -192,15 +192,24 @@ a{
   &__controls{
     display: flex;
     gap: 1rem;
+    &-btn {
+      @include btn();
+      &.blue{
+        @include btn($blue_pantone, $c_bg-color, $blue_pantone_darker )
+      }
+      &.green{
+        @include btn($caribbean_green, $c_bg-color, $caribbean_green-darker)
+      }
+    }
 
-    @include s-screen(){
+    @media only screen and (max-width: 992px){
       display: none;
     }
   }
 
   &__burger-area{
     display: none;
-    @include s-screen(){
+    @media only screen and (max-width: 992px){
       display: block;
     }
   }
@@ -215,13 +224,13 @@ a{
     box-sizing: border-box;
     padding: 2rem;
     box-shadow: $shadow_1;
-    z-index: -1;
+    z-index: 3;
     padding-top: $p_header-pt + $p_header-pb + $h_logo-header-mob + 2rem;
-    background-color: $c_card-color;
+    background-color: $caribbean_green;
 
     &.opened{
       display: block;
-      width: 50%;
+      width: 70%;
       right: 0px;
     }
 
@@ -273,8 +282,8 @@ a{
   }
 
   &__mobile-sidebar-content{
-    overflow-y: auto;
-    overflow-x: hidden;
+    //overflow-y: auto;
+    //overflow-x: hidden;
     height: 100%;
     max-height: 100%;
     display: flex;
@@ -292,13 +301,14 @@ a{
 
 .hero{
   box-sizing: border-box;
-  height: calc(99vh - $p_header-pt - $p_header-pb - $h_logo-header-mob);
   padding: 2rem 0;
   display: flex;
   align-items: center;
+  background: #0C0032  50% 50%/cover url("../img/Looper-2.png") no-repeat;
 
+  //background: #0C0032 ;
   @include m-screen{
-      padding: 1rem 0;
+    padding: 4rem 0;
   }
 
   &__wrapper{
@@ -306,7 +316,6 @@ a{
     align-items: center;
     gap: 4%;
     justify-content: space-between;
-
     @include s-screen{
       flex-wrap: wrap;
       justify-content: center;
@@ -315,17 +324,47 @@ a{
     }
   }
 
-  &__content-block{
-    flex-basis: 48%;
-
+  &__content_mobile-block{
+    padding: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    //background: rgba(12,0,50,0.54)  50% 50%/cover url("../img/Looper-2.png") no-repeat;
     @include m-screen{
       flex-basis: 100%;
     }
+    @include m-screen{
+      font-size: 4rem;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+    .hero__images-block {
+      img {
+        width: 100%;
+      }
+    }
   }
 
+
   &__title{
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
+    color: $c_contrast-color;
+    text-transform: uppercase;
+    p {
+      margin: 0;
+    }
+    @include m-screen{
+      font-size: 3rem;
+    }
+    @include l-screen{
+      font-size: 4rem;
+    }
+  }
+  &_desc {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: $c_contrast-color;
   }
 
   &__description{
@@ -333,52 +372,70 @@ a{
   }
 
   &__btns-area{
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-
   }
 
   &__btn{
-
-    
+    @include btn($caribbean_green, $c_bg-color,  $caribbean_green-darker, $width: 14rem)
   }
 
-  
   &__images-block{
-    flex-basis: 48%;
-
-    @include m-screen{
-      flex-basis: 100%;
+    @include l-screen{
+      margin: 2rem 1rem 2rem;
     }
   }
+  &_circled_image-220 {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 8px solid $c_contrast-color;
+    @include l-screen{
+      width: 220px;
+      border: 15px solid $c_contrast-color;
 
+    }
+  }
+  &_circled_image-490{
+    width: 207px;
+    border-radius: 250px;
+    border: 8px solid $interdimensional_blue;
+    @include l-screen{
+      width: 490px;
+      border: 15px solid $interdimensional_blue;
+
+    }
+  }
+  &_circled_image-320{
+    width: 160px;
+    border: 8px solid $caribbean_green;
+    border-radius: 250px;
+    @include l-screen{
+      width: 320px;
+      border: 15px solid $caribbean_green;
+    }
+  }
   &__image{
     display: block;
     margin: 0 auto;
     height: 70vh;
-
     @include m-screen{
       height: auto;
     }
   }
 }
 
-.narrow-section-1{
-  margin-top: 1rem;
+.offer{
   padding: 2rem 0;
-  box-shadow: $shadow_2;
-
+  background: $interdimensional_blue;
+  @include m-screen{
+    padding: 4rem 0;
+  }
   &__wrapper{
     display: flex;
-    // justify-content: space-between;
     gap: 4rem;
     flex-wrap: wrap;
   }
 
   &__text-block{
-    flex-basis: 16.5rem;
-
     @include l-screen(){
       flex-basis: 100%;
       text-align: center;
@@ -428,160 +485,461 @@ a{
       width: 80%;
     }
   }
-}
-
-.content-section-1{
-  margin-top: 1rem;
-  padding: 2rem 0;
-
-  &__wrapper{
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-
-    @include s-screen(){
-      flex-wrap: wrap;
-    }
-  }
-
-  &__content-block{
+  &__tabs {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    flex-basis: 30%;
-    gap: 2rem;
 
-    @include s-screen(){
-      flex-basis: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    @include l-screen(){
+      flex-direction: row;
+
     }
-  }
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+    &__title {
 
-  &__img-wrapper{
-    margin-bottom: 1rem;
+    }
+    &__text-block {
+      flex: 0 1 40%;
+      display: flex;
+      justify-content: flex-start;
+      align-content: stretch;
+      align-items: stretch;
+      @include l-screen {
+        flex-direction: column;
 
-    @include s-screen(){
+      }
+      button {
+        text-align: left;
+        border-radius: 0;
+        margin: 0;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 35px;
+        padding: .75em ;
+        border: 1px solid transparent;
+        transition: all .6s ease-in-out;
+        position: relative;
+        background: none;
+        color: $c_contrast-color;
+        @include m-screen {
+          font-size: 30px;
+        }
+        @include l-screen {
+          font-size: 54px;
+          line-height: 76px;
+          padding: .75em  8rem .75em .75em;
+
+        }
+      }
+        button.active {
+          &::before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: $c-contrast-color;
+            transition: background 200ms linear;
+            @include l-screen {
+              top: 100%;
+            }
+          }
+          &::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            bottom: 15px;
+            width: 5px;
+            height: 84px;
+            background: $c-contrast-color;
+            transition: background 200ms linear;
+            @include l-screen {
+              height: 200px;
+              bottom: 0;
+              left: 0;
+            }
+          }
+        }
+      button.active:not(:first-of-type) {
+        &::before {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 5px;
+          background: $c-contrast-color;
+          transition: background 500ms linear;
+
+        }
+        &::after {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 5px;
+          height: 84px;
+          background: $c-contrast-color;
+          transition: background 500ms linear;
+          @include l-screen {
+            bottom: 0;
+            height: 200px;
+          }
+        }
+      }
+    }
+    &_features-block {
+      flex: 0 1 60%;
+      display: none;
+      padding: 2rem 1rem;
       text-align: center;
+      background:  $c_contrast-color bottom right/50%  url("../img/headphones.png") no-repeat;
+      &:last-child {
+        background:  $c_contrast-color bottom right/50%  url("../img/brands.png") no-repeat;
+
+      }
+    }
+    &_features-list {
+      display: flex;
+      flex-direction: column;
+      padding: .75rem;
+      text-align: left;
+      @include m-screen(){
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      @include l-screen(){
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+      }
+      &-item {
+        flex-basis: 70%;
+        @include m-screen() {
+          flex-basis: 45%;
+        }
+        @include l-screen() {
+          flex-basis: 50%;
+        }
+        &-title {
+          font-size: 1rem;
+          line-height: 1.5;
+          margin: 0;
+          color: $cetacean_blue;
+          background: 0 5px/18px url("../img/checked-arrow.svg") no-repeat;
+          padding-left: 35px;
+          @include l-screen {
+            font-size: 1.5rem;
+            background: 0 5px/23px url("../img/checked-arrow.svg") no-repeat;
+          }
+        }
+        &-desc {
+          font-size: 1rem;
+          line-height: 1.5;
+          @include l-screen {
+            font-size: 1.2rem;
+
+          }
+        }
+      }
+    }
+    &_features-block.active {
+      display: block;
+    }
+    &_cta {
+      @include btn( $caribbean_green, $blue_pantone, $caribbean_green-darker, $width: 14rem, $before-bg: "../img/blue-horizontal.svg" , $after-bg: "../img/blue-vertical.svg" )
+    }
+    &__img {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      min-width: 180px;
+      max-width: 600px;
     }
   }
+} /* / @media all */
 
-  &__img{
-    width: 3rem;
-    height: auto;
+.steps {
+  background: $cetacean_blue;
+  padding: 2rem 0;
+  @include l-screen(){
+    padding: 4rem 0;
   }
-
-  &__title-wrapper{
-    margin-bottom: 1rem;
-
-    @include s-screen(){
-      text-align: center;
-    }
+  &__img-wrapper {
+    padding: 4rem 0;
   }
-
-  &__title{
-    font-size: 1.2rem;
-    font-weight: 700;
-  }
-
-  &__desc-wrapper{
-    max-width: 18rem;
-
-    @include s-screen(){
-      max-width: unset;
-      text-align: center;
-    }
-  }
-
-  &__image-block{
-    flex-basis: 65%;
-    flex-grow: 1;
-  }
-
-  &__image-wrapper{
+  &__img {
     width: 100%;
-    text-align: right;
   }
+  &__list{
+    @include l-screen {
+      display: flex;
+      flex-direction: row;
+    }
 
-  &__image{
-    width: 100%;
-    max-width: 40rem;
-    height: auto;
+    &-item {
+      flex-basis: 25%;
+      padding: 1rem;
+      display: flex;
+    }
+    &-item-number {
+      margin-right: 2rem;
+      font-size: 4rem;
+      font-weight: 700;
+
+      &:first-child {
+        color: $caribbean_green;
+      }
+      &:nth-child(2) {
+        color: $interdimensional_blue;
+      }
+      &:nth-child(3) {
+        color: $interdimensional_blue;
+      }
+      &:nth-child(4) {
+        color: $interdimensional_blue;
+      }
+    }
+    &-item-desc {
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $c-contrast-color;
+      background: $caribbean_green;
+
+      &:first-child {
+        background: $caribbean_green;
+      }
+      &:nth-child(2) {
+        background: $interdimensional_blue;
+      }
+      &:nth-child(3) {
+        background: $interdimensional_blue;
+      }
+      &:nth-child(4) {
+        background: $interdimensional_blue;
+      }
+    }
   }
 }
+.about_us {
+  background: $interdimensional_blue;
+  padding: 4rem 0;
+  img {
+    width: 100%;
+  }
+  &__flex {
+    padding: 2rem 0;
+    @include l-screen {
+      display: flex;
+      flex-direction: row;
+      padding: 4rem 0;
 
-.content-section-2{
-  margin-top: 1rem;
+    }
+  }
+  &__img {
+    @include l-screen { flex-basis: 50%;}
+  }
+  &__text {
+    padding-top: 2rem;
+    @include l-screen {
+      flex-basis: 50%;
+      padding-left: 2rem;
+    }
+
+  }
+  &__article {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: $c-contrast-color;
+  }
+  &__cta {
+    @include btn( $caribbean_green, $c-contrast-color, $caribbean_green-darker, $width: 14rem, )
+
+  }
+}
+.news {
+  background: $cetacean_blue;
   padding: 2rem 0;
+  @include l-screen {
+    padding: 4rem 0;
 
-  &__wrapper{
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-
-    @include s-screen(){
-      flex-wrap: wrap;
-      flex-direction: row-reverse;
+  }
+  &__flex {
+    @include l-screen {
+      @include flex-container($justify: space-between);
+      padding: 4rem 0;
     }
   }
-
-  &__content-block{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  &__item {
+    padding: 2rem 1rem;
     flex-basis: 30%;
-    gap: 2rem;
-
-    @include s-screen(){
-      flex-basis: 100%;
+    img {
+      width: 100%
+    }
+    &_date {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: $caribbean_green;
+    }
+    &_title {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      color: $c-contrast-color;
+      font-weight: 500;
+    }
+    &_cta {
+      @include btn( $caribbean_green, $c-contrast-color, $caribbean_green-darker)
     }
   }
+}
+.faq {
+  padding: 4rem 0;
+  .section_desc {
+    color: $cetacean_blue;
+  }
+  &__list_item {
+    border-top: 1px solid lightgray;
+    &:last-child {
+      border-bottom: 1px solid lightgray;
+    }
+    position: relative;
+    &_flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-open {
+      position: relative;
+      right: 0;
+      top: 50%;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      &::after{
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 2px;
+        background: $cetacean_blue;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: rotate(0deg);
+        -webkit-font-smoothing: antialiased;
+        transition: transform .25s linear;
+        -webkit-transition: -webkit-transform .25s linear;
+        @include l-screen {
+          width: 30px
+        }
+      }
+      &::before{
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 2px;
+        background: $cetacean_blue;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: rotate(90deg);
+        -webkit-font-smoothing: antialiased;
+        transition: transform .25s linear;
+        -webkit-transition: -webkit-transform .25s linear;
+        @include l-screen {
+          width: 30px
+        }
+      }
+      &[aria-expanded='true'] {
+        &::after{
+          transform: rotate(-45deg);
+        }
+        &::before{
+          transform: rotate(45deg);
+        }
+        +  .faq__list_item-accordion {
+          opacity: 1;
+          max-height: 9em;
+          transition: all 200ms linear;
+          will-change: opacity, max-height;
+        }
+    }
+    }
 
-  &__img-wrapper{
-    margin-bottom: 1rem;
-
-    @include s-screen(){
-      text-align: center;
+    &-title {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: $cetacean_blue;
+      font-weight: 600;
+      margin: 1.5rem 0;
+      @include l-screen {
+        font-size: 1.5rem;
+      }
+    }
+    &-accordion {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 200ms linear, max-height 200ms linear;
+      will-change: opacity, max-height;
+    }
+    &-desc{
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #282828;
+      font-weight: 500;
     }
   }
-
-  &__img{
-    width: 3rem;
-    height: auto;
+}
+.footer{
+  background: $cetacean_blue;
+  padding: 2rem 0;
+  text-align: center;
+  @include l-screen {
+    padding: 4rem 0;
   }
-
-  &__title-wrapper{
-    margin-bottom: 1rem;
-
-    @include s-screen(){
-      text-align: center;
+  &__flex {
+      @include l-screen {
+        @include flex-container($justify: space-between);
+      }
+  }
+  &__column {
+    flex-basis: 33%;
+    &-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      line-height: 40px;
+      color: $c-contrast-color;
     }
   }
-
-  &__title{
-    font-size: 1.2rem;
-    font-weight: 700;
-  }
-
-  &__desc-wrapper{
-    max-width: 18rem;
-
-    @include s-screen(){
-      max-width: unset;
-      text-align: center;
+  &__list {
+    &_item-link {
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: $c-contrast-color;
     }
   }
-
-  &__image-block{
-    flex-basis: 65%;
-    flex-grow: 1;
-  }
-
-  &__image-wrapper{
-    width: 100%;
-  }
-
-  &__image{
-    width: 100%;
-    max-width: 40rem;
-    height: auto;
+  .copy {
+    color: $c-contrast-color;
+    margin: 1rem;
   }
 }
