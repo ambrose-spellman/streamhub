@@ -1,4 +1,4 @@
-# webpack-template-lp
+# streamhub landing
 Webpack template for landingpage
 
 1. Instal deps ```npm i```
